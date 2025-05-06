@@ -11,6 +11,7 @@ This library provides a client that partially implements NTP v3 (RFC 1305). It a
 This repository contains two main library products:
 
 * `NTPClient`: Provides the high-level `NTPClient`. This is intended for consumption by other projects.
+  * [NTPClient documentation](https://swiftpackageindex.com/apple/swift-ntp/documentation/ntpclient)
 * `NTP`: (`package` level) Contains the core NTP protocol logic, packet parsing/serialization, and data structures. It is currently not publicly accessible.
 
 ## 💻 Examples
