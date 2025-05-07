@@ -3,7 +3,6 @@ import NTPClient
 // snippet.hide
 if #available(macOS 13.0, *) {
     // snippet.show
-
     let ntp = NTPClient(
         config: NTPClient.Config(
             version: .v4
