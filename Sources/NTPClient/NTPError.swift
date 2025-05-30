@@ -17,32 +17,32 @@ public struct NTPError: Error, Equatable, Hashable, CustomStringConvertible {
     public var description: String {
         String(describing: self.base)
     }
-    
+
     @usableFromInline
     enum Base: Equatable, Hashable, Sendable {
         case responseNotReceived
         case notEnoughBytes
         case versionNotSupported
     }
-    
+
     @usableFromInline
     let base: Base
-    
+
     @inlinable
     init(_ base: Base) { self.base = base }
-    
+
     /// The client didn't receive a response from the NTP server.
     @inlinable
     public static var responseNotReceived: Self {
         Self(.responseNotReceived)
     }
-    
+
     /// Received data packet is too small to be a valid NTP response.
     @inlinable
     public static var notEnoughBytes: Self {
         Self(.notEnoughBytes)
     }
-    
+
     /// NTP version number in the server's response isn't supported by the client.
     @inlinable
     public static var versionNotSupported: Self {
