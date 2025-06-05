@@ -72,8 +72,7 @@ public struct NTPClient: Sendable {
     /// - Parameter timeout: A duration after which the operation will timeout.
     /// - Returns: response from the NTP server with some NTP specific calculations.
     public func query(timeout: Duration) async throws -> NTPResponse {
-        let deadlineInstant: ContinuousClock.Instant = ContinuousClock.Instant.now + timeout
-        return try await withDeadline(deadlineInstant, clock: ContinuousClock()) {
+        try await withTimeout(in: timeout, clock: .continuous) {
             let bootstrap = DatagramBootstrap(
                 group: MultiThreadedEventLoopGroup.singleton
             ).channelInitializer { channel in
