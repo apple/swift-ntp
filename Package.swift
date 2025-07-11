@@ -22,7 +22,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.81.0"),
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin.git", from: "1.0.0"),
     ],
     targets: [
         .target(
@@ -30,7 +30,6 @@ let package = Package(
             dependencies: [
                 .product(name: "NIOCore", package: "swift-nio")
             ],
-            path: "Sources/NTP",
             swiftSettings: [
                 .enableUpcomingFeature("InternalImportsByDefault")
             ]
@@ -38,10 +37,9 @@ let package = Package(
         .target(
             name: "NTPClient",
             dependencies: [
-                "NTP",
+                .target(name: "NTP"),
                 .product(name: "NIOPosix", package: "swift-nio"),
             ],
-            path: "Sources/NTPClient",
             swiftSettings: [
                 .enableUpcomingFeature("InternalImportsByDefault")
             ]
@@ -49,13 +47,13 @@ let package = Package(
         .testTarget(
             name: "NTPTests",
             dependencies: [
-                "NTP"
+                .target(name: "NTP")
             ]
         ),
         .testTarget(
             name: "NTPClientTests",
             dependencies: [
-                "NTPClient"
+                .target(name: "NTPClient")
             ]
         ),
     ]
