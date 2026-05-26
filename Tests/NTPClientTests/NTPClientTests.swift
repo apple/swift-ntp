@@ -17,7 +17,7 @@ import Testing
 @testable import NTPClient
 
 @Test(
-    "Ensure deadline error is thrown",
+    "Ensure timeout error is thrown",
     .timeLimit(.minutes(1)),  // shortest time limit supported
     arguments: [
         Duration.seconds(0),
@@ -26,7 +26,7 @@ import Testing
 )
 func testNTPQueryTimeout(d: Duration) async {
     let ntp = NTPClient(config: .init(), server: "169.254.0.1")
-    await #expect(throws: TimeOutError.self, "notEnoughBytes") {
+    await #expect(throws: TimeOutError.self, "timeout error should be thrown in \(d) seconds") {
         let _ = try await ntp.query(timeout: d)
     }
 }
