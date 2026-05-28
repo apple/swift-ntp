@@ -26,7 +26,7 @@ import Testing
 )
 func testNTPQueryTimeout(d: Duration) async {
     let ntp = NTPClient(config: .init(), server: "169.254.0.1")
-    await #expect(throws: TimeOutError.self, "timeout error should be thrown in \(d) seconds") {
+    await #expect(throws: TimeOutError.self) {
         let _ = try await ntp.query(timeout: d)
     }
 }
